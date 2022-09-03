@@ -95,7 +95,7 @@ def generate_list_credit_card_numbers():
         credit_cards.append({'cc_num': cc_num, 'provider': 'visa', 'expires': faker.credit_card_expire(start=delta_time_object, end="+5y", date_format="%m/%y")})        
     return credit_cards
 
-def generate_df_with_profiles(credit_cards):
+def generate_df_with_profiles(credit_cards : list)-> pd.DataFrame:
     profiles = []
     for credit_card in credit_cards:
         address = faker.local_latlng(country_code = 'US')
@@ -106,16 +106,17 @@ def generate_df_with_profiles(credit_cards):
             dday = profile['birthdate']
             delta = datetime.datetime.now() - datetime.datetime(dday.year, dday.month, dday.day)
             age = int(delta.days / 365)
-        if age >= 18 or age <= 100:
-            profile['City'] = address[2]
-            profile['Country'] = address[3]
-            profile['cc_num'] = credit_card['cc_num']
-            profile['age'] = age
-            credit_card['age'] = age
-            profiles.append(profile)
+        profile['City'] = address[2]
+        profile['Country'] = address[3]
+        profile['cc_num'] = credit_card['cc_num']
+        credit_card['age'] = age
+        profiles.append(profile)
 
+    # Cast the columns to the correct Pandas DType        
     profiles_df = pd.DataFrame.from_records(profiles)
-    profiles_df.drop('age', axis=1, inplace=True)
+    profiles_df['birthdate']= pd.to_datetime(profiles_df['birthdate'])
+    profiles_df['cc_num']= pd.to_numeric(profiles_df['cc_num'])
+
     return profiles_df
 
 #  pyasset - assert len(timestamps) == TOTAL_UNIQUE_TRANSACTIONS
@@ -358,7 +359,10 @@ def transactions_as_dataframe(transactions, normal_atm_withdrawals):
 
 
 def create_credit_cards_as_df(credit_cards):
-    return pd.DataFrame.from_records(credit_cards)
+    df = pd.DataFrame.from_records(credit_cards)
+    # Cast the columns to the correct Pandas DType
+    df['cc_num']= pd.to_numeric(df['cc_num'])
+    return df
 
 def create_profiles_as_df(credit_cards):
     profiles_df = generate_df_with_profiles(credit_cards)
@@ -380,35 +384,12 @@ def create_transactions_as_df(credit_cards):
     update_normal_atm_withdrawals(fraudulent_atm_tr_indxs, normal_atm_withdrawals, cash_amounts)
 
     transactions_df = transactions_as_dataframe(transactions, normal_atm_withdrawals)
+                                
+    # Cast the columns to the correct Pandas DType
+    transactions_df['cc_num'] = pd.to_numeric(transactions_df['cc_num'])
+    transactions_df['longitude'] = pd.to_numeric(transactions_df['longitude'])
+    transactions_df['latitude'] = pd.to_numeric(transactions_df['latitude'])
+    transactions_df['datetime']= pd.to_datetime(transactions_df['datetime'])
+
     return transactions_df
 
-    
-if __name__ == "__main__":
-   credit_cards = generate_list_credit_card_numbers()    
-   cc_df = create_credit_cards_as_df(credit_cards)
-   cc_df.to_csv("cc.csv", index=False)
-   profile_df = create_profiles_as_df(credit_cards)
-   profile_df.to_csv("profiles.csv", index=False)
-   trans_df = create_transactions_as_df(credit_cards)
-   trans_df.to_csv("trans.csv", index=False)
-
-# import importlib
-# from hamilton import driver
-
-# initial_columns = {  # load from actuals or wherever 
-#                      # this is our initial data we use as input.
-#     'signups': pd.Series([1, 10, 50, 100, 200, 400]),
-#     'spend': pd.Series([10, 10, 20, 40, 40, 50]),
-# }
-# # module to import functions from
-# module_name = 'my_functions'
-# py_module = importlib.import_module(module_name)
-# # create the DAG
-# dr = driver.Driver(initial_columns, py_module)
-# # determine what we want in the end
-# output_columns = ['signups', 'avg_3wk_spend', 'some_column']
-# df = dr.execute(output_columns, display_graph=False)
-
-# output_columns =['tid', 'datetime', 'cc_num', 'category', 'amount', 'latitude', \
-#                 'longitude', 'city', 'country', 'fraud_label', 'age_at_transaction', \
-#                 'days_until_card_expires', 'loc_delta']

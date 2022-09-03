@@ -3,19 +3,17 @@ import pandas as pd
 import numpy as np
 from math import radians
 
-def first(trans_df : pd.DataFrame, profiles_df : pd.DataFrame, credit_cards_df : pd.DataFrame)-> pd.DataFrame:
-    # Compute age at transaction.
+def card_owner_age(trans_df : pd.DataFrame, profiles_df : pd.DataFrame)-> pd.DataFrame:
     age_df = trans_df.merge(profiles_df, on="cc_num", how="left")
     trans_df["age_at_transaction"] = (age_df["datetime"] - age_df["birthdate"]) / np.timedelta64(1, "Y")
+    return trans_df
 
-    # Compute days until card expires.
+def expiry_days(trans_df : pd.DataFrame, credit_cards_df : pd.DataFrame)-> pd.DataFrame:
     card_expiry_df = trans_df.merge(credit_cards_df, on="cc_num", how="left")
     card_expiry_df["expires"] = pd.to_datetime(card_expiry_df["expires"], format="%m/%y")
     trans_df["days_until_card_expires"] = (card_expiry_df["expires"] - card_expiry_df["datetime"]) / np.timedelta64(1, "D")
-
     return trans_df
-
-
+    
 def haversine(long, lat):
     """Compute Haversine distance between each consecutive coordinate in (long, lat)."""
 
@@ -31,7 +29,7 @@ def haversine(long, lat):
     return c
 
 
-def second(trans_df : pd.DataFrame)-> pd.DataFrame:
+def distance_between_consectutive_transactions(trans_df : pd.DataFrame)-> pd.DataFrame:
 
     trans_df.sort_values("datetime", inplace=True)
     trans_df[["longitude", "latitude"]] = trans_df[["longitude", "latitude"]].applymap(radians)
@@ -43,7 +41,7 @@ def second(trans_df : pd.DataFrame)-> pd.DataFrame:
     return trans_df
 
 
-def third(trans_df : pd.DataFrame, window_len)-> pd.DataFrame:
+def activity_level(trans_df : pd.DataFrame, window_len)-> pd.DataFrame:
     
     cc_group = trans_df[["cc_num", "amount", "datetime"]].groupby("cc_num").rolling(window_len, on="datetime")
 
