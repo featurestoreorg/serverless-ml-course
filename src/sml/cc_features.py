@@ -79,12 +79,10 @@ def activity_level(trans_df : pd.DataFrame, window_len)-> pd.DataFrame:
     window_aggs_df = window_aggs_df.merge(df_4h_loc_delta_mavg,left_index=True, right_index=True)
 
     window_aggs_df = window_aggs_df.merge(trans_df[["cc_num", "datetime"]].sort_index(),left_index=True, right_index=True)
+ 
     return window_aggs_df
 
 
-def convert_datetime(trans_df : pd.DataFrame, window_aggs_df : pd.DataFrame)-> pd.DataFrame:
-    trans_df.datetime = trans_df.datetime.values.astype(np.int64) // 10 ** 6
-    window_aggs_df.datetime = window_aggs_df.datetime.values.astype(np.int64) // 10 ** 6
-    return window_aggs_df
-    
+def convert_datetime(df : pd.DataFrame):
+    df.datetime = df.datetime.values.astype(np.int64) // 10 ** 6    
     

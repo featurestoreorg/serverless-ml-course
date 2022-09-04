@@ -77,6 +77,7 @@ SUSCEPTIBLE_CARDS_DISTRIBUTION_BY_AGE = {
 
 
 def generate_unique_credit_card_numbers(n: int) -> pd.Series:
+    """."""    
     cc_ids = set()
     for _ in range(n):
         cc_id = faker.credit_card_number(card_type='visa')
@@ -86,7 +87,8 @@ def generate_unique_credit_card_numbers(n: int) -> pd.Series:
 # write a pytest - assert len(credit_card_numbers) == TOTAL_UNIQUE_USERS 
 # assert len(credit_card_numbers[0]) == 16 # validate if generated number is 16-digit
 
-def generate_list_credit_card_numbers():
+def generate_list_credit_card_numbers() -> list:
+    """."""    
     credit_cards = []
     credit_card_numbers = generate_unique_credit_card_numbers(TOTAL_UNIQUE_USERS)
     delta_time_object = datetime.datetime.strptime(START_DATE, DATE_FORMAT)
@@ -96,6 +98,7 @@ def generate_list_credit_card_numbers():
     return credit_cards
 
 def generate_df_with_profiles(credit_cards : list)-> pd.DataFrame:
+    """."""    
     profiles = []
     for credit_card in credit_cards:
         address = faker.local_latlng(country_code = 'US')
@@ -121,6 +124,7 @@ def generate_df_with_profiles(credit_cards : list)-> pd.DataFrame:
 
 #  pyasset - assert len(timestamps) == TOTAL_UNIQUE_TRANSACTIONS
 def generate_timestamps(n: int) -> list:
+    """Return a list of timestamps of length 'n'."""    
     start = datetime.datetime.strptime(START_DATE, DATE_FORMAT)
     end = datetime.datetime.strptime(END_DATE, DATE_FORMAT)
     timestamps = list()
@@ -131,10 +135,12 @@ def generate_timestamps(n: int) -> list:
     return timestamps
 
 def get_random_transaction_amount(start: float, end: float) -> float:
+    """."""    
     amt = round(np.random.uniform(start, end), 2)
     return amt
 
-def generate_amounts():
+def generate_amounts() -> list:
+    """."""    
     amounts = []
     for percentage, span in AMOUNT_DISTRIBUTION_PERCENTAGES.items():
         n = int(TOTAL_UNIQUE_TRANSACTIONS * percentage)
@@ -143,7 +149,8 @@ def generate_amounts():
             amounts.append(get_random_transaction_amount(start, end+1))
     return amounts
 
-def generate_categories(amounts):
+def generate_categories(amounts) -> list:
+    """."""    
     categories = []        
     for category, category_perc_price in CATEGORY_PERC_PRICE.items():
         percentage, min_price, max_price = category_perc_price
@@ -157,11 +164,13 @@ def generate_categories(amounts):
     return categories
 
 def generate_transaction_id(timestamp: str, credit_card_number: str, transaction_amount: float) -> str:
+    """."""    
     hashable = f'{timestamp}{credit_card_number}{transaction_amount}'
     hexdigest = hashlib.md5(hashable.encode('utf-8')).hexdigest()
     return hexdigest
 
-def generate_transactions(credit_card_numbers, timestamps, categories):
+def generate_transactions(credit_card_numbers: list, timestamps: list, categories: list) -> list:
+    """."""    
     transactions = []
     for timestamp, category in zip(timestamps, categories):
         credit_card_number = random.choice(credit_card_numbers)
@@ -182,7 +191,8 @@ def generate_transactions(credit_card_numbers, timestamps, categories):
                            )
     return transactions
 
-def generate_cash_amounts():
+def generate_cash_amounts() -> list:
+    """."""    
     cash_amounts = []
     for percentage, span in AMOUNT_DISTRIBUTION_PERCENTAGES.items():
         n = int(TOTAL_UNIQUE_CASH_WITHDRAWALS * percentage)
@@ -192,7 +202,7 @@ def generate_cash_amounts():
     return cash_amounts
 
 def generate_chains():
-    
+    """."""    
     visited = set()
     chains = defaultdict(list)
 
@@ -217,7 +227,9 @@ def generate_chains():
             visited.add(i)
     return chains
 
-def generate_atm_withdrawal(credit_card_number: str, cash_amounts: list, length: int, delta: int, radius: float = None, country_code = 'US') -> List[Dict]:
+def generate_atm_withdrawal(credit_card_number: str, cash_amounts: list, length: int, \
+                            delta: int, radius: float = None, country_code = 'US') -> List[Dict]:
+    """."""
     atms = [] 
     start = datetime.datetime.strptime(START_DATE, DATE_FORMAT)
     end = datetime.datetime.strptime(END_DATE, DATE_FORMAT)
@@ -247,7 +259,8 @@ def generate_atm_withdrawal(credit_card_number: str, cash_amounts: list, length:
         timestamp = current
     return atms
 
-def generate_susceptible_cards(credit_cards):
+def generate_susceptible_cards(credit_cards: list) -> list:
+    """."""
     susceptible_cards = []
     visited_cards = []
     for percentage, span in SUSCEPTIBLE_CARDS_DISTRIBUTION_BY_AGE.items():
@@ -266,7 +279,8 @@ def generate_susceptible_cards(credit_cards):
                 susceptible_cards.append(current)
     return susceptible_cards
 
-def generate_normal_atm_withdrawals(cash_amounts, susceptible_cards):
+def generate_normal_atm_withdrawals(cash_amounts: list, susceptible_cards: list) -> list:
+    """."""
     normal_atm_withdrawals = []
     atm_transactions = len(cash_amounts)
     cash_withdrawal_cards = random.sample(susceptible_cards, CASH_WITHRAWAL_CARDS_TOTAL//(CASH_WITHRAWAL_CARDS_TOTAL//len(susceptible_cards)+1))
@@ -283,6 +297,7 @@ def generate_normal_atm_withdrawals(cash_amounts, susceptible_cards):
 
 
 def generate_timestamps_for_fraud_attacks(timestamp: str, chain_length: int) -> list:
+    """."""
     timestamps = []
     timestamp = datetime.datetime.strptime(timestamp, DATE_FORMAT)
     for _ in range(chain_length):
@@ -294,6 +309,7 @@ def generate_timestamps_for_fraud_attacks(timestamp: str, chain_length: int) -> 
     return timestamps 
 
 def generate_amounts_for_fraud_attacks(chain_length: int) -> list:
+    """."""
     amounts = []
     for percentage, span in AMOUNT_DISTRIBUTION_PERCENTAGES.items():
         n = math.ceil(chain_length * percentage)
@@ -303,7 +319,8 @@ def generate_amounts_for_fraud_attacks(chain_length: int) -> list:
     return amounts[:chain_length]
 
 
-def update_transactions(transactions, chains):
+def update_transactions(transactions: list, chains: list) -> list:
+    """."""
     for key, chain in chains.items():
         transaction = transactions[key]
         timestamp = transaction['datetime']
@@ -324,12 +341,14 @@ def update_transactions(transactions, chains):
             original_transaction['tid'] = generate_transaction_id(inject_timestamp, cc_num, amount)
             transactions[idx] = original_transaction
 
-def generate_fraudulent_atm_tr_indxs(normal_atm_withdrawals):
+def generate_fraudulent_atm_tr_indxs(normal_atm_withdrawals: list) -> list:
+    """."""
     return random.sample([i for i in range(0, len(normal_atm_withdrawals))], \
                   int(FRAUD_RATIO * len(normal_atm_withdrawals)))
 
-def update_normal_atm_withdrawals(fraudulent_atm_tr_indxs, normal_atm_withdrawals, cash_amounts):
-
+def update_normal_atm_withdrawals(fraudulent_atm_tr_indxs :list, normal_atm_withdrawals :list,\
+                                  cash_amounts: list):
+    """."""
     for fraudulent_atm_tr_indx in fraudulent_atm_tr_indxs:
         # interval in seconds between fraudulent attacks
         delta = random.randint(1, 5)
@@ -348,27 +367,31 @@ def update_normal_atm_withdrawals(fraudulent_atm_tr_indxs, normal_atm_withdrawal
         fraudulent_atm_tr['country'] = fraudulent_atm_location[3]  
         fraudulent_atm_tr['fraud_label'] = 1 
         atm_withdrawal.append(fraudulent_atm_tr)
-        normal_atm_withdrawals[fraudulent_atm_tr_indx] = atm_withdrawal  
+        normal_atm_withdrawals[fraudulent_atm_tr_indx] = atm_withdrawal
         
         
-def transactions_as_dataframe(transactions, normal_atm_withdrawals):
+def transactions_as_dataframe(transactions: list, normal_atm_withdrawals: list) -> pd.DataFrame:
+    """."""
     for atm_withdrawal in normal_atm_withdrawals:
         for withdrawal in atm_withdrawal:
             transactions.append(withdrawal)  
     return pd.DataFrame.from_records(transactions)
 
 
-def create_credit_cards_as_df(credit_cards):
+def create_credit_cards_as_df(credit_cards: list) -> pd.DataFrame:
+    """."""
     df = pd.DataFrame.from_records(credit_cards)
     # Cast the columns to the correct Pandas DType
     df['cc_num']= pd.to_numeric(df['cc_num'])
     return df
 
-def create_profiles_as_df(credit_cards):
+def create_profiles_as_df(credit_cards: list):
+    """."""
     profiles_df = generate_df_with_profiles(credit_cards)
     return profiles_df
 
-def create_transactions_as_df(credit_cards):
+def create_transactions_as_df(credit_cards: list):
+    """."""
     timestamps = generate_timestamps(TOTAL_UNIQUE_TRANSACTIONS)
     amounts = generate_amounts()
     categories = generate_categories(amounts)
