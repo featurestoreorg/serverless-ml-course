@@ -82,7 +82,3 @@ def activity_level(trans_df : pd.DataFrame, window_len)-> pd.DataFrame:
  
     return window_aggs_df
 
-
-def convert_datetime(df : pd.DataFrame):
-    df.datetime = df.datetime.values.astype(np.int64) // 10 ** 6    
-    
