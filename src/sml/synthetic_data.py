@@ -385,12 +385,12 @@ def create_credit_cards_as_df(credit_cards: list) -> pd.DataFrame:
     df['cc_num']= pd.to_numeric(df['cc_num'])
     return df
 
-def create_profiles_as_df(credit_cards: list):
+def create_profiles_as_df(credit_cards: list) -> pd.DataFrame:
     """."""
     profiles_df = generate_df_with_profiles(credit_cards)
     return profiles_df
 
-def create_transactions_as_df(credit_cards: list):
+def create_transactions_as_df(credit_cards: list) -> pd.DataFrame:
     """."""
     timestamps = generate_timestamps(TOTAL_UNIQUE_TRANSACTIONS)
     amounts = generate_amounts()
