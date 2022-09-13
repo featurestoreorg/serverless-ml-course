@@ -1,1 +1,7 @@
 faker
+parsedatetime
+hsfs[python]
+hopsworks
+nbconvert
+scikit-learn
+plotly
