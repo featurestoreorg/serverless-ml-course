@@ -5,3 +5,5 @@ hopsworks
 nbconvert
 scikit-learn
 plotly
+PIL
+seaborn
