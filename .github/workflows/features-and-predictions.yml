@@ -3,7 +3,7 @@ name: cc-card-fraud-feature-and-prediction-pipelines
 on:
   workflow_dispatch:
   schedule:
-    - cron: '11 * * * *'
+    - cron: '11 11 * * *'
 
 jobs:
   test_schedule:
