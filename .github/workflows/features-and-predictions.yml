@@ -43,7 +43,8 @@ jobs:
       
           # Optional glob pattern of files which should be added to the commit
           # Defaults to all (.)
-          file_pattern: src/01-module/latest_iris.png src/01-moduel/actual_iris.png src/01-module/iris-prediction-time.txt 
+          file_pattern: src/01-module/*.*
+          #latest_iris.png src/01-moduel/actual_iris.png src/01-module/iris-prediction-time.txt 
       
           # Optional. Local file path to the repository.
           # Defaults to the root of the repository.
