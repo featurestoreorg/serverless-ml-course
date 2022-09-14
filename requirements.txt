@@ -7,3 +7,4 @@ scikit-learn
 plotly
 Pillow
 seaborn
+dataframe-image
