@@ -9,12 +9,10 @@
  * Update frequency: daily
 
 #### Performance Monitoring 
-Most recent predictions:
-
 
 | Recent Predictions/Outcomes | Confusion matrix of historical model accuracy 
 |--------|------- 
-| ![Recent predictions](https://raw.githubusercontent.com/featurestoreorg/serverless-ml-course/main/src/01-module/df_recent.png)i | ![Confusion Matrix](https://raw.githubusercontent.com/featurestoreorg/serverless-ml-course/main/src/01-module/confusion_matrix.png)
+| ![Recent predictions](https://raw.githubusercontent.com/featurestoreorg/serverless-ml-course/main/src/01-module/df_recent.png) | ![Confusion Matrix](https://raw.githubusercontent.com/featurestoreorg/serverless-ml-course/main/src/01-module/confusion_matrix.png)
 
 
 ## Module 2 - Credit Card Fraud Dashboard
