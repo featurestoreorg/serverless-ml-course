@@ -1,0 +1,30 @@
+{
+  "input_schema": {
+    "columnar_schema": [
+      {
+        "name": "sepal_length",
+        "type": "float64"
+      },
+      {
+        "name": "sepal_width",
+        "type": "float64"
+      },
+      {
+        "name": "petal_length",
+        "type": "float64"
+      },
+      {
+        "name": "petal_width",
+        "type": "float64"
+      }
+    ]
+  },
+  "output_schema": {
+    "columnar_schema": [
+      {
+        "name": "variety",
+        "type": "object"
+      }
+    ]
+  }
+}
