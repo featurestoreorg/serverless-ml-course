@@ -1,4 +1,4 @@
-name: cc-card-fraud-feature-and-prediction-pipelines
+name: iris-feature-and-prediction-pipelines
 
 on:
   workflow_dispatch:
