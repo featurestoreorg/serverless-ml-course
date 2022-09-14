@@ -43,7 +43,7 @@ jobs:
       
           # Optional glob pattern of files which should be added to the commit
           # Defaults to all (.)
-          file_pattern: src/01-module/fraud_counts.png
+          file_pattern: src/01-module/latest_iris.png
       
           # Optional. Local file path to the repository.
           # Defaults to the root of the repository.
@@ -74,10 +74,10 @@ jobs:
           skip_dirty_check: true    
           
           # Optional. Skip internal call to `git fetch`
-          skip_fetch: true    
+          skip_fetch: false
           
           # Optional. Skip internal call to `git checkout`
-          skip_checkout: true
+          skip_checkout: false
       
           # Optional. Prevents the shell from expanding filenames. 
           # Details: https://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html
@@ -85,13 +85,4 @@ jobs:
       
           # Optional. Create given branch name in local and remote repository.
           create_branch: false
-#      - name: update graph image with predictions
-#        uses: devops-infra/action-commit-push@master
-#        with:
-#          github_token: "${{ secrets.GITHUB_TOKEN }}"
-#          add_timestamp: true
-#          commit_prefix: "[AUTO]"
-#          commit_message: "Automatic commit of latest_lahinch.png"
-#          force: false
-#          target_branch: gh-pages
 
