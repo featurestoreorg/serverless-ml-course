@@ -6,11 +6,17 @@ from math import radians
 
 # +
 def card_owner_age(trans_df : pd.DataFrame, profiles_df : pd.DataFrame)-> pd.DataFrame:
+    """Used only in feature pipelines (not online inference). 
+       Unit test with DataFrames and sample data.
+    """
     age_df = trans_df.merge(profiles_df, on="cc_num", how="left")
     trans_df["age_at_transaction"] = (age_df["datetime"] - age_df["birthdate"]) / np.timedelta64(1, "Y")
     return trans_df
 
 def expiry_days(trans_df : pd.DataFrame, credit_cards_df : pd.DataFrame)-> pd.DataFrame:
+    """Used only in feature pipelines (not online inference). 
+       Unit test with DataFrames and sample data.
+    """
     card_expiry_df = trans_df.merge(credit_cards_df, on="cc_num", how="left")
     card_expiry_df["expires"] = pd.to_datetime(card_expiry_df["expires"], format="%m/%y")
     trans_df["days_until_card_expires"] = (card_expiry_df["expires"] - card_expiry_df["datetime"]) / np.timedelta64(1, "D")
@@ -19,14 +25,32 @@ def expiry_days(trans_df : pd.DataFrame, credit_cards_df : pd.DataFrame)-> pd.Da
 
 # -
 
-def haversine_distance(long: float, lat: float, long_prev: float, lat_prev: float)-> float:
+def haversine_distance(long: float, lat: float, prev_long: float, prev_lat: float)-> float:
     """Compute Haversine distance between each consecutive coordinate in (long, lat)."""
 
-    long_diff = long_prev - long
-    lat_diff = lat_prev - lat
+    if long > 180 or prev_long > 180:
+        raise Exception('longitude cannot be greater than 180')
+
+    if lat > 90 or prev_lat > 90:
+        raise Exception('latitude cannot be greater than 90')
+
+    if long < -180 or prev_long < -180:
+        raise Exception('longitude cannot be less than -180')
+
+    if lat < -90 or prev_lat < -90:
+        raise Exception('latitude cannot be less than -90')
+
+    
+    long = radians(long)
+    lat = radians(lat)
+    prev_long = radians(prev_long)
+    prev_lat = radians(prev_lat)
+    
+    long_diff = prev_long - long
+    lat_diff = prev_lat - lat
 
     a = np.sin(lat_diff/2.0)**2
-    b = np.cos(lat) * np.cos(lat_prev) * np.sin(long_diff/2.0)**2
+    b = np.cos(lat) * np.cos(prev_lat) * np.sin(long_diff/2.0)**2
     c = 2*np.arcsin(np.sqrt(a + b))
 
     return c
