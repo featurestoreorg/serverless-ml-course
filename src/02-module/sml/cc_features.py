@@ -1,8 +1,10 @@
-# +
 import pandas as pd
 import numpy as np
+
+from datetime import datetime, date
 from math import radians
 
+# +
 def card_owner_age(trans_df : pd.DataFrame, profiles_df : pd.DataFrame)-> pd.DataFrame:
     age_df = trans_df.merge(profiles_df, on="cc_num", how="left")
     trans_df["age_at_transaction"] = (age_df["datetime"] - age_df["birthdate"]) / np.timedelta64(1, "Y")
@@ -13,72 +15,105 @@ def expiry_days(trans_df : pd.DataFrame, credit_cards_df : pd.DataFrame)-> pd.Da
     card_expiry_df["expires"] = pd.to_datetime(card_expiry_df["expires"], format="%m/%y")
     trans_df["days_until_card_expires"] = (card_expiry_df["expires"] - card_expiry_df["datetime"]) / np.timedelta64(1, "D")
     return trans_df
-    
-def haversine(long, lat):
+
+
+# -
+
+def haversine_distance(long: float, lat: float, long_prev: float, lat_prev: float)-> float:
     """Compute Haversine distance between each consecutive coordinate in (long, lat)."""
 
-    long_shifted = long.shift()
-    lat_shifted = lat.shift()
-    long_diff = long_shifted - long
-    lat_diff = lat_shifted - lat
+    long_diff = long_prev - long
+    lat_diff = lat_prev - lat
 
     a = np.sin(lat_diff/2.0)**2
-    b = np.cos(lat) * np.cos(lat_shifted) * np.sin(long_diff/2.0)**2
+    b = np.cos(lat) * np.cos(lat_prev) * np.sin(long_diff/2.0)**2
     c = 2*np.arcsin(np.sqrt(a + b))
 
     return c
 
+def time_delta(prev_datetime: int, current_datetime: int)-> int:
+    """Compute time difference between each consecutive transaction."""    
+    return prev_datetime - current_datetime
 
-def distance_between_consectutive_transactions(trans_df : pd.DataFrame)-> pd.DataFrame:
+def time_delta_to_days(time_delta: datetime)-> float:
+    """."""    
+    return time_delta.total_seconds() / 86400
 
-    trans_df.sort_values("datetime", inplace=True)
+def date_to_timestamp(date_obj: datetime)-> int:
+    return int(date_obj.timestamp() * 1000)
+
+def timestamp_to_date(timestamp: int)-> datetime:
+    return datetime.fromtimestamp(timestamp // 1000)
+
+def activity_level(trans_df : pd.DataFrame, lag: int)-> pd.DataFrame:
+    
+    # Convert coordinates into radians:
     trans_df[["longitude", "latitude"]] = trans_df[["longitude", "latitude"]].applymap(radians)
+    
+    trans_df.sort_values(["datetime", "cc_num"], inplace=True) 
 
-    trans_df["loc_delta"] = trans_df.groupby("cc_num")\
-        .apply(lambda x : haversine(x["longitude"], x["latitude"]))\
+    # When we call `haversine_distance`, we want to pass as params, the long/lat of the current row, and the long/lat of the most
+    # recent prior purchase. By grouping the DF by cc_num, apart from the first transaction (which will be NaN and we fill that with 0 at the end),
+    # we can access the previous lat/long using Panda's `shift` operation, which gives you the previous row (long/lang).
+    trans_df[f"loc_delta_t_minus_{lag}"] = trans_df.groupby("cc_num")\
+        .apply(lambda x :haversine_distance(x["longitude"], x["latitude"], x["longitude"].shift(-lag), x["latitude"].shift(-lag)))\
         .reset_index(level=0, drop=True)\
         .fillna(0)
+
+    # Use the same `shift` operation in Pandas to get the previous row for a given cc_number
+    trans_df[f"time_delta_t_minus_{lag}"] = trans_df.groupby("cc_num")\
+        .apply(lambda x : time_delta(x["datetime"].shift(-lag), x["datetime"]))\
+        .reset_index(level=0, drop=True)
+#        .fillna(0) # handle the first datetime, which has no previous row when you call `shift`
+
+    # Convert time_delta from seconds to days
+    trans_df[f"time_delta_t_minus_{lag}"] = trans_df[f"time_delta_t_minus_{lag}"].map(lambda x: time_delta_to_days(x))
+    trans_df[f"time_delta_t_minus_{lag}"] = trans_df[f"time_delta_t_minus_{lag}"].fillna(0)    
+    trans_df = trans_df[["tid","datetime","cc_num","category", "amount", "city", "country", "age_at_transaction"\
+                         ,"days_until_card_expires", f"loc_delta_t_minus_{lag}", f"time_delta_t_minus_{lag}"]]
+    # Convert datetime to timestamp, because of a problem with UTC. Hopsworks assumes you use UTC, but if you don't use UTC
+    # on your Python environment, the datetime will be wrong. With timestamps, we don't have the UTC problems when performing PIT Joins.
+    trans_df.datetime = trans_df.datetime.map(lambda x: date_to_timestamp(x))
     return trans_df
 
 
-def activity_level(trans_df : pd.DataFrame, window_len)-> pd.DataFrame:
+def aggregate_activity_by_hour(trans_df : pd.DataFrame, window_len)-> pd.DataFrame:
     
     cc_group = trans_df[["cc_num", "amount", "datetime"]].groupby("cc_num").rolling(window_len, on="datetime")
 
     # Moving average of transaction volume.
-    df_4h_mavg = pd.DataFrame(cc_group.mean())
-    df_4h_mavg.columns = ["trans_volume_mavg", "datetime"]
-    df_4h_mavg = df_4h_mavg.reset_index(level=["cc_num"])
-    df_4h_mavg = df_4h_mavg.drop(columns=["cc_num", "datetime"])
-    df_4h_mavg = df_4h_mavg.sort_index()
+    df_mavg = pd.DataFrame(cc_group.mean())
+    df_mavg.columns = ["trans_volume_mavg", "datetime"]
+    df_mavg = df_mavg.reset_index(level=["cc_num"])
+    df_mavg = df_mavg.drop(columns=["cc_num", "datetime"])
+    df_mavg = df_mavg.sort_index()
 
     # Moving standard deviation of transaction volume.
-    df_4h_std = pd.DataFrame(cc_group.mean())
-    df_4h_std.columns = ["trans_volume_mstd", "datetime"]
-    df_4h_std = df_4h_std.reset_index(level=["cc_num"])
-    df_4h_std = df_4h_std.drop(columns=["cc_num", "datetime"])
-    df_4h_std = df_4h_std.fillna(0)
-    df_4h_std = df_4h_std.sort_index()
-    window_aggs_df = df_4h_std.merge(df_4h_mavg,left_index=True, right_index=True)
+    df_std = pd.DataFrame(cc_group.mean())
+    df_std.columns = ["trans_volume_mstd", "datetime"]
+    df_std = df_std.reset_index(level=["cc_num"])
+    df_std = df_std.drop(columns=["cc_num", "datetime"])
+    df_std = df_std.fillna(0)
+    df_std = df_std.sort_index()
+    window_aggs_df = df_std.merge(df_mavg,left_index=True, right_index=True)
 
     # Moving average of transaction frequency.
-    df_4h_count = pd.DataFrame(cc_group.mean())
-    df_4h_count.columns = ["trans_freq", "datetime"]
-    df_4h_count = df_4h_count.reset_index(level=["cc_num"])
-    df_4h_count = df_4h_count.drop(columns=["cc_num", "datetime"])
-    df_4h_count = df_4h_count.sort_index()
-    window_aggs_df = window_aggs_df.merge(df_4h_count,left_index=True, right_index=True)
+    df_count = pd.DataFrame(cc_group.mean())
+    df_count.columns = ["trans_freq", "datetime"]
+    df_count = df_count.reset_index(level=["cc_num"])
+    df_count = df_count.drop(columns=["cc_num", "datetime"])
+    df_count = df_count.sort_index()
+    window_aggs_df = window_aggs_df.merge(df_count,left_index=True, right_index=True)
 
     # Moving average of location difference between consecutive transactions.
-    cc_group = trans_df[["cc_num", "loc_delta", "datetime"]].groupby("cc_num").rolling(window_len, on="datetime").mean()
-    df_4h_loc_delta_mavg = pd.DataFrame(cc_group)
-    df_4h_loc_delta_mavg.columns = ["loc_delta_mavg", "datetime"]
-    df_4h_loc_delta_mavg = df_4h_loc_delta_mavg.reset_index(level=["cc_num"])
-    df_4h_loc_delta_mavg = df_4h_loc_delta_mavg.drop(columns=["cc_num", "datetime"])
-    df_4h_loc_delta_mavg = df_4h_loc_delta_mavg.sort_index()
-    window_aggs_df = window_aggs_df.merge(df_4h_loc_delta_mavg,left_index=True, right_index=True)
+    cc_group = trans_df[["cc_num", "loc_delta_t_minus_1", "datetime"]].groupby("cc_num").rolling(window_len, on="datetime").mean()
+    df_loc_delta_mavg = pd.DataFrame(cc_group)
+    df_loc_delta_mavg.columns = ["loc_delta_mavg", "datetime"]
+    df_loc_delta_mavg = df_loc_delta_mavg.reset_index(level=["cc_num"])
+    df_loc_delta_mavg = df_loc_delta_mavg.drop(columns=["cc_num", "datetime"])
+    df_loc_delta_mavg = df_loc_delta_mavg.sort_index()
+    window_aggs_df = window_aggs_df.merge(df_loc_delta_mavg,left_index=True, right_index=True)
 
     window_aggs_df = window_aggs_df.merge(trans_df[["cc_num", "datetime"]].sort_index(),left_index=True, right_index=True)
  
     return window_aggs_df
-
