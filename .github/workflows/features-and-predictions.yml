@@ -35,7 +35,7 @@ jobs:
           # Optional. Local and remote branch name where commit is going to be pushed
           #  to. Defaults to the current branch.
           #  You might need to set `create_branch: true` if the branch does not exist.
-          branch: main
+          branch: gh-pages
  
           # Optional. Options used by `git-commit`.
           # See https://git-scm.com/docs/git-commit#_options
@@ -43,7 +43,7 @@ jobs:
       
           # Optional glob pattern of files which should be added to the commit
           # Defaults to all (.)
-          file_pattern: src/01-module/assets/latest_iris.png src/01-module/assets/actual_iris.png src/01-module/assets/confusion_matrix.png src/01-module/assets/df_recent.png
+          file_pattern: assets/latest_iris.png assets/actual_iris.png assets/confusion_matrix.png assets/df_recent.png
       
           # Optional. Local file path to the repository.
           # Defaults to the root of the repository.
