@@ -23,22 +23,21 @@ def expiry_days(trans_df : pd.DataFrame, credit_cards_df : pd.DataFrame)-> pd.Da
     return trans_df
 
 
-# -
-
+# +
 def haversine_distance(long: float, lat: float, prev_long: float, prev_lat: float)-> float:
     """Compute Haversine distance between each consecutive coordinate in (long, lat)."""
 
-    if long > 180 or prev_long > 180:
-        raise Exception('longitude cannot be greater than 180')
+#     if long > 180 or prev_long > 180:
+#         raise Exception('longitude cannot be greater than 180')
 
-    if lat > 90 or prev_lat > 90:
-        raise Exception('latitude cannot be greater than 90')
+#     if lat > 90 or prev_lat > 90:
+#         raise Exception('latitude cannot be greater than 90')
 
-    if long < -180 or prev_long < -180:
-        raise Exception('longitude cannot be less than -180')
+#     if long < -180 or prev_long < -180:
+#         raise Exception('longitude cannot be less than -180')
 
-    if lat < -90 or prev_lat < -90:
-        raise Exception('latitude cannot be less than -90')
+#     if lat < -90 or prev_lat < -90:
+#         raise Exception('latitude cannot be less than -90')
 
     
     long = radians(long)
@@ -54,6 +53,9 @@ def haversine_distance(long: float, lat: float, prev_long: float, prev_lat: floa
     c = 2*np.arcsin(np.sqrt(a + b))
 
     return c
+
+
+# -
 
 def time_delta(prev_datetime: int, current_datetime: int)-> int:
     """Compute time difference between each consecutive transaction."""    
