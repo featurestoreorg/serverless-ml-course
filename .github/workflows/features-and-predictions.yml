@@ -43,7 +43,7 @@ jobs:
       
           # Optional glob pattern of files which should be added to the commit
           # Defaults to all (.)
-          file_pattern: assets/latest_iris.png assets/actual_iris.png assets/confusion_matrix.png assets/df_recent.png
+          file_pattern: assets/latest_iris.png assets/actual_iris.png assets/confusion_matrix.png 
       
           # Optional. Local file path to the repository.
           # Defaults to the root of the repository.
