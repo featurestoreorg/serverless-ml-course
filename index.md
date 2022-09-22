@@ -10,9 +10,9 @@
 
 #### Performance Monitoring 
 
-| Recent Predictions/Outcomes | Confusion matrix of historical model accuracy 
-|--------|------- 
-| ![Recent predictions](https://raw.githubusercontent.com/featurestoreorg/serverless-ml-course/gh-pages/assets/df_recent.png) | ![Confusion Matrix](https://raw.githubusercontent.com/featurestoreorg/serverless-ml-course/gh-pages/assets/confusion_matrix.png)
+|Confusion matrix of historical model accuracy 
+|-------- 
+| ![Confusion Matrix](https://raw.githubusercontent.com/featurestoreorg/serverless-ml-course/gh-pages/assets/confusion_matrix.png)
 
 
 ## Module 2 - Credit Card Fraud Dashboard
