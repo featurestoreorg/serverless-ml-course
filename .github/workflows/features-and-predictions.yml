@@ -77,7 +77,7 @@ jobs:
           skip_fetch: false
           
           # Optional. Skip internal call to `git checkout`
-          skip_checkout: false
+          skip_checkout: true
       
           # Optional. Prevents the shell from expanding filenames. 
           # Details: https://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html
