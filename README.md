@@ -8,6 +8,8 @@
 # **[Beyond Notebooks - Serverless ML](https://www.serverless-ml.org)**
 ***Build Batch and Real-Time Prediction Services with Python***
 
+![serverless architecture](/assets/images/serverless-ml-architecture.svg "Serverless Architecture")
+
 # **Overview**
 You should not need to be an expert in Kubernetes or cloud computing to build an end-to-end service that makes intelligent decisions with the help of a ML model. Serverless ML makes it easy to build a system that uses ML models to make predictions. 
 
