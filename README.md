@@ -30,7 +30,7 @@ You do not need to install, upgrade, or operate any systems. You only need to be
 
   - [Lab](https://www.youtube.com/watch?v=zAD3miW0Og0) | [Slides](https://drive.google.com/file/d/1hve9nVrImRhNE8lE26zPcr3X1DDDk7uD/view?usp=sharing)  | [Homework form](https://forms.gle/2p5odBdpAqvavH1T7)
   
-- ## **Module 02** - Data modelling and the Feature Store. The Credit-card fraud prediction service. 
+- ## **Module 02** - Data modeling and the Feature Store. The Credit-card fraud prediction service. 
     - Full Lecture [Video](https://youtu.be/tpxZh8lbcBk)
     
     - _Lab_ | [Slides](https://drive.google.com/file/d/1HgAKsHnOms1XCtl_KIEuELudTLtDkhxk/view?usp=sharing) | _Homework form_
