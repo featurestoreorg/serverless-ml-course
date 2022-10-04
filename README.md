@@ -30,8 +30,8 @@ You do not need to install, upgrade, or operate any systems. You only need to be
 
   - [Lab](https://www.youtube.com/watch?v=zAD3miW0Og0) | [Slides](https://drive.google.com/file/d/1hve9nVrImRhNE8lE26zPcr3X1DDDk7uD/view?usp=sharing)  | [Homework form](https://forms.gle/2p5odBdpAqvavH1T7)
   
-- #### **Module 02** - Feature Store and Model Registry. Credit-card fraud prediction service. 
-- #### **Module 03** - Training Pipelines and Inference Pipelines.
+- #### **Module 02** - Data modelling and the Feature Store. The Credit-card fraud prediction service. 
+- #### **Module 03** - Training Pipelines, Inference Pipelines, and the Model Registry.
 - #### **Module 04** - Bring a Prediction Service to Life with a User Interface.
 - #### **Module 05** - Automated Testing and Versioning of features and models.
 - #### **Module 06** - Real-time serverless machine learning systems. Project presentation.
