@@ -31,10 +31,13 @@ You do not need to install, upgrade, or operate any systems. You only need to be
   - [Lab](https://www.youtube.com/watch?v=zAD3miW0Og0) | [Slides](https://drive.google.com/file/d/1hve9nVrImRhNE8lE26zPcr3X1DDDk7uD/view?usp=sharing)  | [Homework form](https://forms.gle/2p5odBdpAqvavH1T7)
   
 - ## **Module 02** - Data modeling and the Feature Store. The Credit-card fraud prediction service. 
-    - Full Lecture [Video](https://youtu.be/tpxZh8lbcBk) | [Slides](https://drive.google.com/file/d/1HgAKsHnOms1XCtl_KIEuELudTLtDkhxk/view?usp=sharing)
+    - Full Lecture: [Video](https://youtu.be/tpxZh8lbcBk) | [Slides](https://drive.google.com/file/d/1HgAKsHnOms1XCtl_KIEuELudTLtDkhxk/view?usp=sharing)
     
     - [Lab](https://www.youtube.com/watch?v=niPayagVxFg) | [Slides](https://drive.google.com/file/d/1_1oDN5nfpWSUpKNlls45HLllQ75yAWd-/view?usp=sharing) | [Homework form](https://forms.gle/5g9XtaeBEigKEirGA)
-- #### **Module 03** - Training Pipelines, Inference Pipelines, and the Model Registry.
+- ## **Module 03** - Training Pipelines, Inference Pipelines, and the Model Registry.
+    - Full lectureL [Video](https://youtu.be/BD1UOJs1Bvo) | [Slides](https://drive.google.com/file/d/1XhfnH7DzwDqQKS6WxDVqWFFas0fi_jnJ/view?usp=sharing)
+
+    - _Lab (Coming Soon)_
 - #### **Module 04** - Bring a Prediction Service to Life with a User Interface.
 - #### **Module 05** - Automated Testing and Versioning of features and models.
 - #### **Module 06** - Real-time serverless machine learning systems. Project presentation.
