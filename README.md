@@ -35,9 +35,9 @@ You do not need to install, upgrade, or operate any systems. You only need to be
     
     - [Lab](https://www.youtube.com/watch?v=niPayagVxFg) | [Slides](https://drive.google.com/file/d/1_1oDN5nfpWSUpKNlls45HLllQ75yAWd-/view?usp=sharing) | [Homework form](https://forms.gle/5g9XtaeBEigKEirGA)
 - ## **Module 03** - Training Pipelines, Inference Pipelines, and the Model Registry.
-    - Full lectureL [Video](https://youtu.be/BD1UOJs1Bvo) | [Slides](https://drive.google.com/file/d/1XhfnH7DzwDqQKS6WxDVqWFFas0fi_jnJ/view?usp=sharing)
+    - Full lecture: [Video](https://youtu.be/BD1UOJs1Bvo) | [Slides](https://drive.google.com/file/d/1XhfnH7DzwDqQKS6WxDVqWFFas0fi_jnJ/view?usp=sharing)
 
-    - _Lab (Coming Soon)_
+    - [Lab](https://youtu.be/QfzrKgLqEXc) | [Slides](https://drive.google.com/file/d/1jITx5HGh2uM5vAeknvCaeN6ZPOc2i8AS/view?usp=sharing)
 - #### **Module 04** - Bring a Prediction Service to Life with a User Interface.
 - #### **Module 05** - Automated Testing and Versioning of features and models.
 - #### **Module 06** - Real-time serverless machine learning systems. Project presentation.
