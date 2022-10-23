@@ -8,7 +8,7 @@ if [ "$HOPSWORKS_API_KEY" == "" ] ; then
 fi
 
 if [ "$HOPSWORKS_PROJECT" == "" ] ; then
-  echo "Enter the name of your project:"
+  echo "Enter the name of your project on Hopsworks:"
   read proj
   export HOPSWORKS_PROJECT=$proj
 export 
