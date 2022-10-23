@@ -56,7 +56,7 @@ def get_model(project = project):
 def explore_data(batch_data):
     st.write(36 * "-")
     print_fancy_header('\n👁 Data Exploration...')
-    labels = ["Normal", "Fraudulent"]
+    labels = ["Suspected of Fraud", "Not Suspected of Fraud"]
     unique, counts = np.unique(batch_data.fraud.values, return_counts=True)
     values = counts.tolist()
 
@@ -94,11 +94,11 @@ st.write(36 * "-")
 print_fancy_header('\n✨ Fetch batch data and predict')
 fv = get_feature_view()
 
-batch_data = retrieve_dataset(fv, start_date, end_date)
-st.write("✅ Retrieved!")
-progress_bar.progress(55)
 
 if st.button('📊 Make a prediction'):
+    batch_data = retrieve_dataset(fv, start_date, end_date)
+    st.write("✅ Retrieved!")
+    progress_bar.progress(55)
     predictions = model.predict(batch_data)
     predictions = transform_preds(predictions)
     batch_data_to_explore = batch_data.copy()
