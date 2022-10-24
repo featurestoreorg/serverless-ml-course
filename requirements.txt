@@ -7,3 +7,5 @@ plotly
 Pillow
 seaborn
 dataframe-image
+streamlit_folium
+plotly
