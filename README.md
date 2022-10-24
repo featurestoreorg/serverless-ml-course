@@ -38,7 +38,11 @@ You do not need to install, upgrade, or operate any systems. You only need to be
     - Full lecture: [Video](https://youtu.be/BD1UOJs1Bvo) | [Slides](https://drive.google.com/file/d/1XhfnH7DzwDqQKS6WxDVqWFFas0fi_jnJ/view?usp=sharing)
 
     - [Lab](https://youtu.be/QfzrKgLqEXc) | [Slides](https://drive.google.com/file/d/1jITx5HGh2uM5vAeknvCaeN6ZPOc2i8AS/view?usp=sharing)
-- #### **Module 04** - Bring a Prediction Service to Life with a User Interface.
+- ## **Module 04** - Serverless User Interfaces for Machine Learning Systems.
+    - Full lecture: [Video](https://youtu.be/GgwIspMUovM) | [Slides](https://drive.google.com/file/d/10JzJCDwi6IPnJNZ0iApzbwACkAn3C9Y9/view?usp=sharing)
+
+    - [Lab](https://youtu.be/sMhCXwm_Wmw) | [Slides](https://drive.google.com/file/d/1bASaZN68__Ut0RnSuTvhF8LKn240UPtE/view?usp=sharing)
+
 - #### **Module 05** - Automated Testing and Versioning of features and models.
 - #### **Module 06** - Real-time serverless machine learning systems. Project presentation.
 
