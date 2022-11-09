@@ -2,8 +2,8 @@ name: fraud-batch-inference-pipeline
 
 on:
   workflow_dispatch:
-#  schedule:
-#    - cron: '11 11 * * *'
+  schedule:
+    - cron: '30 20 * * *'
 
 jobs:
   test_schedule:
