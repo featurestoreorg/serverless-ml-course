@@ -82,14 +82,14 @@ No. You will become a serveless machine learning engineer without having to pay 
 _Self-paced_
 
 ## **Requirements**
-- **Python** environment include a notebook (Jupyter or Colabatory)
+- **Python** environment include a notebook (Jupyter or Colaboratory)
 - https://github.com  account
 - https://hopsworks.ai  account 
 
 # **Key Technologies**
 
 ## **Development environment**
-You can write, test, debug, and train your models in some Python IDE. We will focus on notebooks and Python programs. You can use Jupyter notebooks or Colabatory.
+You can write, test, debug, and train your models in some Python IDE. We will focus on notebooks and Python programs. You can use Jupyter notebooks or Colaboratory.
 
 ## **Github**
 Github to manage your code, GitHub Actions to run your workflows, and Github Pages for your user interface for non-interactive applications. Github Actions offers a free tier of 500 MB and 2,000 minutes to run your pipelines.
