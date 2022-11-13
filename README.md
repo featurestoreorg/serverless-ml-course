@@ -15,6 +15,8 @@ You should not need to be an expert in Kubernetes or cloud computing to build an
 
 You do not need to install, upgrade, or operate any systems. You only need to be able to write Python programs that can be scheduled to run as pipelines. The features and models your pipelines produce are managed by a serverless feature store / model registry. We will also show you how to build a UI for your prediction service by writing Python and some HTML.
 
+Read <a href="https://www.serverless-ml.org/what-is-serverless-machine-learning">this article</a> for an overview on serverless machine learning.
+
 **Prerequisites:** Python - Pandas - Github 
 
 # **Modules**
