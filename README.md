@@ -5,15 +5,15 @@
 <a href="https://www.youtube.com/channel/UC-LrK8ei6w57RmKeswkU23Q" alt="youtube"> <img src="https://img.shields.io/badge/Youtube-red.svg?logo=Youtube" /></a>
 
 
-# **[Beyond Notebooks - Serverless ML](https://www.serverless-ml.org)**
+# **[Beyond Notebooks - Serverless Machine Learning](https://www.serverless-ml.org)**
 ***Build Batch and Real-Time Prediction Services with Python***
 
 ![serverless architecture](/assets/images/serverless-ml-architecture.svg "Serverless Architecture")
 
 # **Overview**
-You should not need to be an expert in Kubernetes or cloud computing to build an end-to-end service that makes intelligent decisions with the help of a ML model. Serverless ML makes it easy to build a system that uses ML models to make predictions. 
+You should not need to be an expert in Kubernetes or cloud computing to build an end-to-end service that makes intelligent decisions with the help of a ML model. Serverless Machine Learning (ML) makes it easy to build a system that uses ML models to make predictions. 
 
-You do not need to install, upgrade, or operate any systems. You only need to be able to write Python programs that can be scheduled to run as pipelines. The features and models your pipelines produce are managed by a serverless feature store / model registry. We will also show you how to build a UI for your prediction service by writing Python and some HTML.
+With Serverless ML, you do not need to install, upgrade, or operate any systems. You only need to be able to write Python programs that can be scheduled to run as pipelines. The features and models your pipelines produce are managed by a serverless feature store / model registry. We will also show you how to build a UI for your prediction service by writing Python and some HTML.
 
 Read <a href="https://www.serverless-ml.org/what-is-serverless-machine-learning">this article</a> for an overview on serverless machine learning.
 
