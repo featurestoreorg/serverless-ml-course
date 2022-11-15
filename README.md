@@ -5,15 +5,17 @@
 <a href="https://www.youtube.com/channel/UC-LrK8ei6w57RmKeswkU23Q" alt="youtube"> <img src="https://img.shields.io/badge/Youtube-red.svg?logo=Youtube" /></a>
 
 
-# **[Beyond Notebooks - Serverless ML](https://www.serverless-ml.org)**
+# **[Beyond Notebooks - Serverless Machine Learning](https://www.serverless-ml.org)**
 ***Build Batch and Real-Time Prediction Services with Python***
 
 ![serverless architecture](/assets/images/serverless-ml-architecture.svg "Serverless Architecture")
 
 # **Overview**
-You should not need to be an expert in Kubernetes or cloud computing to build an end-to-end service that makes intelligent decisions with the help of a ML model. Serverless ML makes it easy to build a system that uses ML models to make predictions. 
+You should not need to be an expert in Kubernetes or cloud computing to build an end-to-end service that makes intelligent decisions with the help of a ML model. Serverless Machine Learning (ML) makes it easy to build a system that uses ML models to make predictions. 
 
-You do not need to install, upgrade, or operate any systems. You only need to be able to write Python programs that can be scheduled to run as pipelines. The features and models your pipelines produce are managed by a serverless feature store / model registry. We will also show you how to build a UI for your prediction service by writing Python and some HTML.
+With Serverless ML, you do not need to install, upgrade, or operate any systems. You only need to be able to write Python programs that can be scheduled to run as pipelines. The features and models your pipelines produce are managed by a serverless feature store / model registry. We will also show you how to build a UI for your prediction service by writing Python and some HTML.
+
+Read <a href="https://www.serverless-ml.org/what-is-serverless-machine-learning">this article</a> for an overview on serverless machine learning.
 
 **Prerequisites:** Python - Pandas - Github 
 
@@ -84,14 +86,14 @@ No. You will become a serveless machine learning engineer without having to pay 
 _Self-paced_
 
 ## **Requirements**
-- **Python** environment include a notebook (Jupyter or Colabatory)
+- **Python** environment include a notebook (Jupyter or Colaboratory)
 - https://github.com  account
 - https://hopsworks.ai  account 
 
 # **Key Technologies**
 
 ## **Development environment**
-You can write, test, debug, and train your models in some Python IDE. We will focus on notebooks and Python programs. You can use Jupyter notebooks or Colabatory.
+You can write, test, debug, and train your models in some Python IDE. We will focus on notebooks and Python programs. You can use Jupyter notebooks or Colaboratory.
 
 ## **Github**
 Github to manage your code, GitHub Actions to run your workflows, and Github Pages for your user interface for non-interactive applications. Github Actions offers a free tier of 500 MB and 2,000 minutes to run your pipelines.
