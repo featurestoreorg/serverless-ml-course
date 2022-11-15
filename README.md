@@ -43,7 +43,11 @@ You do not need to install, upgrade, or operate any systems. You only need to be
 
     - [Lab](https://youtu.be/sMhCXwm_Wmw) | [Slides](https://drive.google.com/file/d/1bASaZN68__Ut0RnSuTvhF8LKn240UPtE/view?usp=sharing)
 
-- #### **Module 05** - Automated Testing and Versioning of features and models.
+- ## **Module 05** - Principles and Practices of MLOps
+    - Part 01: [Video](https://youtu.be/-vbLMtfoBeo) | [Slides](https://drive.google.com/file/d/1orKJJ2e_1pNgF8X6CFBUKw7qEDQVoVqt/view?usp=share_link)
+    - Part 02: Coming Soon
+    - Lab: Coming Soon
+
 - #### **Module 06** - Real-time serverless machine learning systems. Project presentation.
 
 ---
