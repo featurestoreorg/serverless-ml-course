@@ -47,7 +47,7 @@ Read <a href="https://www.serverless-ml.org/what-is-serverless-machine-learning"
 
 - ## **Module 05** - Principles and Practices of MLOps
     - Part 01: [Video](https://youtu.be/-vbLMtfoBeo) | [Slides](https://drive.google.com/file/d/1orKJJ2e_1pNgF8X6CFBUKw7qEDQVoVqt/view?usp=share_link)
-    - Part 02: Coming Soon
+    - Part 02:  [Video](https://youtu.be/j4wZmywPs1E) | [Slides](https://drive.google.com/file/d/13r1OvuuV6Snq1r5PmAvwHU0dTiExQ4iE/view?usp=share_link)
     - Lab: Coming Soon
 
 - #### **Module 06** - Real-time serverless machine learning systems. Project presentation.
