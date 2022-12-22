@@ -51,7 +51,7 @@ Read <a href="https://www.serverless-ml.org/what-is-serverless-machine-learning"
     - Lab: [Video](https://youtu.be/BaAbiFsx25E) | [Slides](https://drive.google.com/file/d/1WOahxd4s9_NVr8JUUVJvvUFU6ea9konS/view?usp=share_link)
 
 - ## **Module 06** -Operational machine learning systems: Real-time Machine Learning. 
-    - Full lecture: [Video](https://youtu.be/GEgiIh9a048) | [Slides](https://drive.google.com/file/d/1VXU2jxEUMIvIY_Xe7XSrNuy0yxXt8glP/view?usp=share_link
+    - Full lecture: [Video](https://youtu.be/GEgiIh9a048) | [Slides](https://drive.google.com/file/d/1VXU2jxEUMIvIY_Xe7XSrNuy0yxXt8glP/view?usp=share_link)
     
     - Lab: Coming soon
 
