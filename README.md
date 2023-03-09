@@ -3,6 +3,8 @@
 
 <a href="https://join.slack.com/t/featurestoreorg/shared_invite/zt-ssh8dec1-IsvwLdTsRMssjT4~Ru2RKg" alt="slack"> <img src="https://img.shields.io/badge/Join Slack-blue.svg?logo=slack" /></a> 
 <a href="https://www.youtube.com/channel/UC-LrK8ei6w57RmKeswkU23Q" alt="youtube"> <img src="https://img.shields.io/badge/Youtube-red.svg?logo=Youtube" /></a>
+<a href="https://discord.com/channels/1065622064800735282/1077878719881945109" alt="discord"> <img src="https://img.shields.io/badge/Join discord-white.svg?logo=discord" /></a> 
+
 
 
 # **[Beyond Notebooks - Serverless Machine Learning](https://www.serverless-ml.org)**
