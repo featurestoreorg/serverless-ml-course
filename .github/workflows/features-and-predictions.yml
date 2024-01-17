@@ -24,6 +24,10 @@ jobs:
       - name: List Jupyter Kernels
         run: jupyter kernelspec list
 
+      - name: Install scikit-learn
+        run: python -m pip install scikit-learn== 1.2.1
+
+
           
       - name: install python packages
         run: |
