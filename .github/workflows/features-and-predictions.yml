@@ -20,6 +20,10 @@ jobs:
       - name: Install Jupyter
         run: |
          python -m pip install jupyter
+
+      - name: List Jupyter Kernels
+        run: jupyter kernelspec list
+
           
       - name: install python packages
         run: |
