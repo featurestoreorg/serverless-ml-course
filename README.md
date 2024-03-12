@@ -1,3 +1,4 @@
+
 ![readme header](/assets//images/card_horizontal.jpg)
 
 
@@ -127,6 +128,30 @@ https://docs.github.com/en/billing/managing-billing-for-github-actions/about-bil
 |**MlOps Zoomcamp**| DevOps style course with Python and Docker as prerequisites.| https://github.com/DataTalksClub/mlops-zoomcamp |
 |**Full Stack Deep Learning**| This course shares best practices for the full stack; topics range from problem selection to dataset management to monitoring.| https://fullstackdeeplearning.com/| 
 |**MLOps course**| A series of lessons teaching how to apply ML to build production-grade products (by Goku Mohandas).|https://github.com/GokuMohandas/mlops-course |
+
+---
+
+# **Definitions**
+
+- [Context windows for LLMs](http://www.hopsworks.ai/dictionary/context-window-for-llms)
+- [Feature Store](https://www.hopsworks.ai/dictionary/feature-store)
+- [Feature Monitoring](https://www.hopsworks.ai/dictionary/feature-monitoring) 
+- [Flash Attention](https://www.hopsworks.ai/dictionary/flash-attention)
+- [Function Calling with LLMs](https://www.hopsworks.ai/dictionary/function-calling-with-llms)
+- [Gradient Accumulation](https://www.hopsworks.ai/dictionary/gradient-accumulation)
+- [In Context Learning (ICL)](http://www.hopsworks.ai/dictionary/in-context-learning-icl)
+- [KServe](https://www.hopsworks.ai/dictionary/kserve)
+- [ML Observability](https://www.hopsworks.ai/dictionary/machine-learning-observability)
+- [ML Pipeline](https://www.hopsworks.ai/dictionary/ml-pipeline)
+- [ML Systems](https://www.hopsworks.ai/dictionary/ml-systems)
+- [Model Deployment](https://www.hopsworks.ai/dictionary/model-deployment)
+- [Model Monitoring](https://www.hopsworks.ai/dictionary/model-monitoring)
+- [Model Registry](https://www.hopsworks.ai/dictionary/model-registry)
+- [Model Serving](https://www.hopsworks.ai/dictionary/model-serving)
+- [Retrieval Augmented Generation (RAG) LLM](https://www.hopsworks.ai/dictionary/retrieval-augmented-generation-llm)
+- [RoPE Scaling](https://www.hopsworks.ai/dictionary/rope-scaling)
+- [Sample Packing](https://www.hopsworks.ai/dictionary/sample-packing)
+- [Similarity Search](http://www.hopsworks.ai/dictionary/similarity-search)
 
 # **Support and Partners**
 </br>
