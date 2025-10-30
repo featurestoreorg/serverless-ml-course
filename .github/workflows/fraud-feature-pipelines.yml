@@ -1,29 +1,36 @@
 name: fraud-feature-pipelines
 
 on:
+  push:
+    branches:
+      - main
+      - develop
   workflow_dispatch:
-#  schedule:
-#    - cron: '11 11 * * *'
+  schedule:
+    - cron: "11 11 * * *"
 
 jobs:
   test_schedule:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo content
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
 
       - name: setup python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.8.1'
-          
-      - name: install python packages
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          
-      - name: execute python workflows from bash script
-        env: 
-          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
-        run: ./src/02-module/scripts/run-fraud-feature-pipelines.sh
+          python-version: "3.13"
 
+      - name: Install uv and just
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/bin
+          echo "$HOME/bin" >> $GITHUB_PATH
+
+      - name: Setup development environment
+        run: just setup
+
+      - name: Run fraud feature pipeline
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+        run: just fraud-pipeline
