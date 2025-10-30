@@ -1,0 +1,59 @@
+[project]
+name = "serverless-ml-course"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "faker",
+    "parsedatetime",
+    "hopsworks",
+    "nbconvert",
+    "scikit-learn",
+    "plotly",
+    "Pillow",
+    "seaborn",
+    "dataframe-image",
+    "streamlit_folium",
+    "sml>=0.9.3",
+]
+
+[dependency-groups]
+dev = [
+    "interrogate>=1.7.0",
+    "pre-commit>=4.3.0",
+    "pyrefly>=0.39.3",
+    "ruff>=0.14.2",
+    "ty>=0.0.1a25",
+]
+
+
+[tool.interrogate]
+ignore-init-method = false
+ignore-init-module = false
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-property-decorators = false
+ignore-module = false
+ignore-nested-functions = false
+ignore-nested-classes = false
+ignore-setters = false
+ignore-overloaded-functions = false
+fail-under = 80
+# example values
+exclude = ["setup.py", "docs", "build"]
+# example regex
+ignore-regex = ["^get$", "^mock_.*", ".*BaseClass.*"]
+ext = []
+# possible values: sphinx (default), google
+style = "sphinx"
+# possible values: 0 (minimal output), 1 (-v), 2 (-vv)
+verbose = 0
+quiet = false
+whitelist-regex = []
+color = true
+omit-covered-files = false
+# output file logation
+generate-badge = "."
+badge-format = "svg"
