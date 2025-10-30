@@ -1,6 +1,10 @@
 name: iris-feature-and-prediction-pipelines
 
 on:
+  push:
+    branches:
+      - main
+      - develop
   workflow_dispatch:
   schedule:
     - cron: "00 00 * * *"
