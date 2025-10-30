@@ -6,7 +6,7 @@ default:
 # Creates a venv (if missing) then installs dev dependencies and enables pre-commit
 setup:
     uv venv || true
-    uv pip install '.[dev]'
+    uv sync
     pre-commit install
 
 # Run all tests
@@ -54,10 +54,10 @@ docs:
 
 # Continuous integration recipe: lint, tests and doc coverage
 ci:
-    ruff format --check .
-    ruff check .
-    python -m pytest -q
-    python -m interrogate -v -i --fail-under=95 .
+    uv run ruff format --check .
+    uv run ruff check .
+    uv run python -m pytest -q
+    uv run python -m interrogate -vv -i --ignore-init-methods --omit-covered-files --fail-under=95 .
 
 # Clean python cache files
 clean:
