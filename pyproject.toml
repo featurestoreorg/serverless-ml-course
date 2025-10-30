@@ -1,0 +1,27 @@
+[project]
+name = "serverless-ml-course"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "faker",
+    "parsedatetime",
+    "hopsworks",
+    "nbconvert",
+    "scikit-learn",
+    "plotly",
+    "Pillow",
+    "seaborn",
+    "dataframe-image",
+    "streamlit_folium",
+]
+
+[dependency-groups]
+dev = [
+    "interrogate>=1.7.0",
+    "pre-commit>=4.3.0",
+    "pyrefly>=0.39.3",
+    "ruff>=0.14.2",
+    "ty>=0.0.1a25",
+]
