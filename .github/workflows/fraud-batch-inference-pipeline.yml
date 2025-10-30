@@ -27,8 +27,15 @@ jobs:
           curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/bin
           echo "$HOME/bin" >> $GITHUB_PATH
 
+      - name: Setup Python virtual environment
+        run: |
+          uv venv
+          echo "$PWD/.venv/bin" >> $GITHUB_PATH
+
       - name: Setup development environment
-        run: just setup
+        run: |
+          uv pip install '.[dev]'
+          pre-commit install
 
       - name: Run fraud batch inference
         env:
