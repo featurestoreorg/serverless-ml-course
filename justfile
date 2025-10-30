@@ -3,13 +3,15 @@ default:
     @just --list
 
 # Setup development environment
+# Creates a venv (if missing) then installs dev dependencies and enables pre-commit
 setup:
+    uv venv || true
     uv pip install '.[dev]'
     pre-commit install
 
 # Run all tests
 test:
-    pytest
+    python -m pytest -q
 
 # Run feature pipeline
 feature-pipeline:
@@ -47,7 +49,15 @@ fix:
 
 # Check documentation coverage
 docs:
-    interrogate -v .
+    # interrogate will scan the project; require verbose and include inheritance
+    python -m interrogate -v -i .
+
+# Continuous integration recipe: lint, tests and doc coverage
+ci:
+    ruff format --check .
+    ruff check .
+    python -m pytest -q
+    python -m interrogate -v -i --fail-under=95 .
 
 # Clean python cache files
 clean:

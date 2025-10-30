@@ -2185,6 +2185,7 @@ dependencies = [
     { name = "plotly" },
     { name = "scikit-learn" },
     { name = "seaborn" },
+    { name = "sml" },
     { name = "streamlit-folium" },
 ]
 
@@ -2208,6 +2209,7 @@ requires-dist = [
     { name = "plotly" },
     { name = "scikit-learn" },
     { name = "seaborn" },
+    { name = "sml", specifier = ">=0.9.3" },
     { name = "streamlit-folium" },
 ]
 
@@ -2227,6 +2229,22 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68a0e064b6af791aa332cf192da575fd474ed7d6f16a2/six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81", size = 34031, upload-time = "2024-12-04T17:35:28.174Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274", size = 11050, upload-time = "2024-12-04T17:35:26.475Z" },
+]
+
+[[package]]
+name = "sml"
+version = "0.9.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "python-dateutil" },
+    { name = "requests" },
+    { name = "six" },
+    { name = "tabulate" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a6/90/c1f9adbc69ffc91f939deda947c62710470691c3a4bb40e6900b2529745a/sml-0.9.3.tar.gz", hash = "sha256:bcb64d41e3eab181e5ec72a0a7535734ae34e1e8b71becc6b095f19aeb594cbe", size = 19717, upload-time = "2018-10-16T14:37:31.397Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1d/0b/98c520654f7540ea67c8250a1e3852fc1b45e6d4e713cdc68fdba9ef3f3b/sml-0.9.3-py2.py3-none-any.whl", hash = "sha256:1b58751814891f5c9671c59ad81ec92786d03137fb1e56f2ea367688d1db6c8a", size = 23806, upload-time = "2018-10-16T14:37:29.403Z" },
 ]
 
 [[package]]

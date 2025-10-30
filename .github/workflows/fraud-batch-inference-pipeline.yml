@@ -3,7 +3,6 @@ name: fraud-batch-inference-pipeline
 on:
   push:
     branches:
-      - main
       - develop
   workflow_dispatch:
   schedule:

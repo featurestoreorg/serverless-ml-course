@@ -3,7 +3,6 @@ name: iris-feature-and-prediction-pipelines
 on:
   push:
     branches:
-      - main
       - develop
   workflow_dispatch:
   schedule:
@@ -40,7 +39,7 @@ jobs:
       - name: Run feature pipeline
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
-        run: ./src/01-module/scripts/run-feature-and-prediction-pipelines.sh
+        run: just feature-pipeline
 
       - name: publish github pages
         uses: stefanzweifel/git-auto-commit-action@v4

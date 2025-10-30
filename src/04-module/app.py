@@ -23,13 +23,18 @@ def iris(sepal_length, sepal_width, petal_length, petal_width):
     input_list.append(petal_length)
     input_list.append(petal_width)
     # 'res' is a list of predictions returned as the label.
-    res = model.predict(np.asarray(input_list).reshape(1, -1)) 
-    # We add '[0]' to the result of the transformed 'res', because 'res' is a list, and we only want 
+    res = model.predict(np.asarray(input_list).reshape(1, -1))
+    # We add '[0]' to the result of the transformed 'res', because 'res' is a list, and we only want
     # the first element.
-    flower_url = "https://raw.githubusercontent.com/featurestoreorg/serverless-ml-course/main/src/01-module/assets/" + res[0] + ".png"
-    img = Image.open(requests.get(flower_url, stream=True).raw)            
+    flower_url = (
+        "https://raw.githubusercontent.com/featurestoreorg/serverless-ml-course/main/src/01-module/assets/"
+        + res[0]
+        + ".png"
+    )
+    img = Image.open(requests.get(flower_url, stream=True).raw)
     return img
-        
+
+
 demo = gr.Interface(
     fn=iris,
     title="Iris Flower Predictive Analytics",
@@ -40,7 +45,8 @@ demo = gr.Interface(
         gr.inputs.Number(default=1.0, label="sepal width (cm)"),
         gr.inputs.Number(default=1.0, label="petal length (cm)"),
         gr.inputs.Number(default=1.0, label="petal width (cm)"),
-        ],
-    outputs=gr.Image(type="pil"))
+    ],
+    outputs=gr.Image(type="pil"),
+)
 
 demo.launch()

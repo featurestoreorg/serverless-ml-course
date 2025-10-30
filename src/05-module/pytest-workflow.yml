@@ -9,21 +9,37 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo content
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
 
       - name: setup python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.8.9'
+          python-version: '3.13'
 
-      - name: install python packages
+      - name: Install uv and just
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pytest
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/bin
+          echo "$HOME/bin" >> $GITHUB_PATH
 
-      - name: execute python workflows from bash script
+      - name: Setup Python virtual environment
+        run: |
+          uv venv
+          echo "$PWD/.venv/bin" >> $GITHUB_PATH
+
+      - name: Install dev dependencies
+        run: |
+          uv pip install '.[dev]'
+          pre-commit install
+
+      - name: Run tests
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
-        run: cd src/05-module && python -m pytest
+        run: |
+          cd src/05-module
+          python -m pytest -q
 
+      - name: Run interrogate (docstring coverage)
+        run: |
+          # interrogate is installed as a dev dependency; enforce 95% coverage
+          python -m interrogate -v -i --fail-under=95 .
